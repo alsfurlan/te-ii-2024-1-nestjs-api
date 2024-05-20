@@ -10,13 +10,11 @@
     "typeorm:generate": "npm run typeorm-default -- migration:generate",
     "typeorm:run": "npm run typeorm-default -- migration:run",
     "typeorm:revert": "npm run typeorm-default -- migration:revert",
-    "typeorm:drop": "npm run typeorm-default schema:drop",
-    
-    "typeorm-seed": "npm run build && npx typeorm migration:run -d ./dist/db/data-source-seed.js",
+    "typeorm:drop": "npm run typeorm-default schema:drop",    
+    "typeorm-seed": "npm run build && npx typeorm -d ./dist/db/data-source-seed.js",
     "typeorm-seed:create": "npm run typeorm-seed -- migration:create",
     "typeorm-seed:run": "npm run typeorm-seed -- migration:run",
-    "typeorm-seed:revert": "npm run typeorm-seed -- migration:revert",
-    
+    "typeorm-seed:revert": "npm run typeorm-seed -- migration:revert",    
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
