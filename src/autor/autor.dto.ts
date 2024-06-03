@@ -13,15 +13,15 @@ export class AutorDto {
   @IsOptional()
   id: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsString({ message: 'O campo nome deve ser do tipo texto' })
+  @IsNotEmpty({ message: 'O nome não pode ser vazio' })
   nome: string;
 
   @IsDateString()
   @IsOptional()
   dataNascimento: Date;
 
-  @IsEnum(GeneroEnum)
+  @IsEnum(GeneroEnum, { message: 'O genêrno deve ser apenas M, F ou I.' })
   @IsOptional()
   genero: GeneroEnum;
 }
