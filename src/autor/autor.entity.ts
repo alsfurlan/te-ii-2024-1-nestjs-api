@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { GeneroEnum } from './genero.enum';
+import { LivroEntity } from 'src/livro/livro.entity';
 
 @Entity({ name: 'autores' })
 export class AutorEntity {
@@ -19,4 +20,7 @@ export class AutorEntity {
     nullable: true,
   })
   genero: GeneroEnum;
+
+  @ManyToMany(() => LivroEntity, (livro) => livro.autores)
+  livros: LivroEntity[]
 }

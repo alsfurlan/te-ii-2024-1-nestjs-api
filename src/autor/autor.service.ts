@@ -16,11 +16,16 @@ export class AutorService {
   ) {}
 
   findAll() {
-    return this.autorRepository.find();
+    return this.autorRepository.find({
+      relations: { livros: true },
+    });
   }
 
   async findById(id: string): Promise<AutorEntity> {
-    const findOne = await this.autorRepository.findOne({ where: { id } });
+    const findOne = await this.autorRepository.findOne({
+      where: { id },
+      relations: { livros: true },
+    });
     if (!findOne) {
       throw new NotFoundException('Autor não encontrado com o id ' + id);
     }
@@ -54,7 +59,7 @@ export class AutorService {
     // this.validateAutorLivros
   }
 
-  private validateAutorNascimento(autor: AutorEntity) {
+  private validateAutorNascimento(autor: AutorEntity | AutorDto) {
     const dataAtual = new Date();
     const dataNascimento = new Date(autor.dataNascimento);
     // if(
